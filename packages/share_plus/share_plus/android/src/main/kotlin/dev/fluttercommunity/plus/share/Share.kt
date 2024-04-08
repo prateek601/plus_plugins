@@ -64,6 +64,12 @@ internal class Share(
                 putExtra(Intent.EXTRA_SUBJECT, subject)
             }
         }
+        if (shareWithWhatsapp != null && shareWithWhatsapp) {
+            shareIntent.setPackage(com.whatsapp)
+            startActivity(chooserIntent, withResult)
+            return
+        }
+
         // If we dont want the result we use the old 'createChooser'
         val chooserIntent =
             if (withResult && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
@@ -90,7 +96,8 @@ internal class Share(
         mimeTypes: List<String>?,
         text: String?,
         subject: String?,
-        withResult: Boolean
+        withResult: Boolean,
+        shareWithWhatsapp: bool?
     ) {
         clearShareCacheFolder()
         val fileUris = getUrisForPaths(paths)
@@ -125,6 +132,11 @@ internal class Share(
         if (text != null) shareIntent.putExtra(Intent.EXTRA_TEXT, text)
         if (subject != null) shareIntent.putExtra(Intent.EXTRA_SUBJECT, subject)
         shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        if (shareWithWhatsapp != null && shareWithWhatsapp) {
+            shareIntent.setPackage(com.whatsapp)
+            startActivity(chooserIntent, withResult)
+            return
+        }
         // If we dont want the result we use the old 'createChooser'
         val chooserIntent =
             if (withResult && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {

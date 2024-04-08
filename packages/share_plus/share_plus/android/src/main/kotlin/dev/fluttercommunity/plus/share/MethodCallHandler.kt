@@ -37,6 +37,7 @@ internal class MethodCallHandler(
                 share.share(
                     call.argument<Any>("text") as String,
                     call.argument<Any>("subject") as String?,
+                    call.argument<bool?>("shareWithWhatsapp")
                     isWithResult,
                 )
 
@@ -59,6 +60,7 @@ internal class MethodCallHandler(
                         call.argument<List<String>?>("mimeTypes"),
                         call.argument<String?>("text"),
                         call.argument<String?>("subject"),
+                        call.argument<bool?>("shareWithWhatsapp")
                         isWithResult,
                     )
 

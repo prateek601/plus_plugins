@@ -114,12 +114,14 @@ class SharePlatform extends PlatformInterface {
     String? subject,
     String? text,
     Rect? sharePositionOrigin,
+    bool? shareWithWhatsapp,
   }) async {
     return _instance.shareXFiles(
       files,
       subject: subject,
       text: text,
       sharePositionOrigin: sharePositionOrigin,
+      shareWithWhatsapp: shareWithWhatsapp,
     );
   }
 }

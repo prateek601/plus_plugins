@@ -46,7 +46,8 @@ class MethodChannelShare extends SharePlatform {
     String text, {
     String? subject,
     Rect? sharePositionOrigin,
-  }) {
+    bool? shareWithWhatsapp,
+    }) {
     assert(text.isNotEmpty);
     final params = <String, dynamic>{
       'text': text,
@@ -58,6 +59,10 @@ class MethodChannelShare extends SharePlatform {
       params['originY'] = sharePositionOrigin.top;
       params['originWidth'] = sharePositionOrigin.width;
       params['originHeight'] = sharePositionOrigin.height;
+    }
+
+    if (shareWithWhatsapp != null) {
+      params["shareWithWhatsapp"] = shareWithWhatsapp;
     }
 
     return channel.invokeMethod<void>('share', params);
@@ -128,6 +133,7 @@ class MethodChannelShare extends SharePlatform {
     String? subject,
     String? text,
     Rect? sharePositionOrigin,
+    bool? shareWithWhatsapp,
   }) async {
     assert(paths.isNotEmpty);
     assert(paths.every((element) => element.isNotEmpty));
@@ -147,6 +153,10 @@ class MethodChannelShare extends SharePlatform {
       params['originHeight'] = sharePositionOrigin.height;
     }
 
+    if(shareWithWhatsapp != null) {
+      params['shareWithWhatsapp'] = shareWithWhatsapp;
+    }
+
     final result =
         await channel.invokeMethod<String>('shareFilesWithResult', params) ??
             'dev.fluttercommunity.plus/share/unavailable';
@@ -161,6 +171,7 @@ class MethodChannelShare extends SharePlatform {
     String? subject,
     String? text,
     Rect? sharePositionOrigin,
+    bool? shareWithWhatsapp,
   }) async {
     final filesWithPath = await _getFiles(files);
 
@@ -174,6 +185,7 @@ class MethodChannelShare extends SharePlatform {
       subject: subject,
       text: text,
       sharePositionOrigin: sharePositionOrigin,
+      shareWithWhatsapp: shareWithWhatsapp,
     );
   }
 
