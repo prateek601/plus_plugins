@@ -203,6 +203,7 @@ class SharePlusWebPlugin extends SharePlatform {
     String? subject,
     String? text,
     Rect? sharePositionOrigin,
+    bool? shareWithWhatsapp,
   }) async {
     final webFiles = <web.File>[];
     for (final xFile in files) {

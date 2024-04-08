@@ -67,6 +67,7 @@ class SharePlusLinuxPlugin extends SharePlatform {
     String? subject,
     String? text,
     Rect? sharePositionOrigin,
+    bool? shareWithWhatsapp,
   }) {
     throw UnimplementedError(
       'shareXFiles() has not been implemented on Linux.',
